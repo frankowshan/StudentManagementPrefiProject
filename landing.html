@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Student Information System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e48aa, #9d50bb, #6e48aa);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(-35px) translateX(-15px);
+            }
+            75% {
+                transform: translateY(-15px) translateX(15px);
+            }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 60px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            width: 90%;
+            transform: translateY(0);
+            animation: container-appear 1s ease-out forwards;
+        }
+
+        @keyframes container-appear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            animation: text-appear 1.2s ease-out forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            color: #f0f0f0;
+            line-height: 1.6;
+            animation: text-appear 1.2s ease-out forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        @keyframes text-appear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            animation: text-appear 1.2s ease-out forwards;
+            animation-delay: 0.9s;
+            opacity: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #9d50bb, #6e48aa);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            text-align: center;
+            animation: text-appear 1.2s ease-out forwards;
+            animation-delay: 1.2s;
+            opacity: 0;
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .feature i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #f0f0f0;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            animation: text-appear 1.2s ease-out forwards;
+            animation-delay: 1.5s;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <!-- Particles will be added with JavaScript -->
+    </div>
+    
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h1>Student Information System</h1>
+        <p>A modern platform to efficiently manage student records, track academic progress, and streamline administrative tasks.</p>
+        
+        <div class="btn-container">
+            <a href="index.php" class="btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Enter Dashboard
+            </a>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-database"></i>
+                <div class="feature-text">Secure Data</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <div class="feature-text">Analytics</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <div class="feature-text">User Friendly</div>
+            </div>
+        </div>
+    </div>
+    
+ 
+    <script>
+        // Create animated particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 5px and 20px
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                particlesContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>
