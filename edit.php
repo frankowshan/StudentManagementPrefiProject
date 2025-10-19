@@ -1,11 +1,40 @@
+<?php
+$conn = mysqli_connect("localhost", "root", "", "studentdb");
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$id = $_GET['id'];
+$sql = "SELECT * FROM students WHERE id = $id";
+$result = mysqli_query($conn, $sql);
+$student = mysqli_fetch_assoc($result);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['full_name'];
+    $age = $_POST['age'];
+    $gender = $_POST['gender'];
+    $course = $_POST['course'];
+    $email = $_POST['email'];
+
+    $update = "UPDATE students 
+               SET full_name='$name', age='$age', gender='$gender', course='$course', email='$email' 
+               WHERE id=$id";
+    if (mysqli_query($conn, $update)) {
+        header("Location: index.php");
+        exit();
+    } else {
+        $error = "Error: " . mysqli_error($conn);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Edit Student</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: Arial, sans-serif;
@@ -31,6 +60,15 @@
             text-align: center;
             color: #333;
             margin-bottom: 20px;
+        }
+
+        .error {
+            color: #dc3545;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8d7da;
+            border-radius: 6px;
         }
 
         label {
@@ -68,9 +106,7 @@
             transition: background 0.3s;
         }
 
-        button:hover {
-            background:  #0056b3;
-        }
+        button:hover { background: #0056b3; }
 
         .back-link {
             display: block;
@@ -81,9 +117,7 @@
             font-weight: bold;
         }
 
-        .back-link:hover {
-            text-decoration: underline;
-        }
+        .back-link:hover { text-decoration: underline; }
 
         @media (max-width: 480px) {
             .form-container {
@@ -96,6 +130,9 @@
 <body>
     <div class="form-container">
         <h2>Edit Student</h2>
+        <?php if (isset($error)): ?>
+            <div class="error"><?= $error ?></div>
+        <?php endif; ?>
         <form method="POST">
             <label>Full Name:</label>
             <input type="text" name="full_name" value="<?= htmlspecialchars($student['full_name']) ?>" required>
@@ -117,7 +154,7 @@
 
             <button type="submit">Update Student</button>
         </form>
-        <a href="index.php" class="back-link"> Back to Student List</a>
+        <a href="index.php" class="back-link">Back to Student List</a>
     </div>
 </body>
 </html>
