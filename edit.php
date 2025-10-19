@@ -1,34 +1,3 @@
-<?php
-$conn = mysqli_connect("localhost", "root", "", "studentdb");
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$id = $_GET['id'];
-$sql = "SELECT * FROM students WHERE id = $id";
-$result = mysqli_query($conn, $sql);
-$student = mysqli_fetch_assoc($result);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['full_name'];
-    $age = $_POST['age'];
-    $gender = $_POST['gender'];
-    $course = $_POST['course'];
-    $email = $_POST['email'];
-
-    $update = "UPDATE students 
-               SET full_name='$name', age='$age', gender='$gender', course='$course', email='$email' 
-               WHERE id=$id";
-    if (mysqli_query($conn, $update)) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
